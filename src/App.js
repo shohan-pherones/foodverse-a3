@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -15,6 +15,8 @@ const App = () => {
 
   const inputField = useRef(null);
 
+  const navigate = useNavigate();
+
   const searchHandler = (e) => {
     e.preventDefault();
 
@@ -23,6 +25,8 @@ const App = () => {
     setSearchQuery("");
     inputField.current.blur();
     setRecipes([]);
+    setError("");
+    navigate("/");
   };
 
   const getData = async (searchQuery) => {
